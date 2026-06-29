@@ -30,7 +30,7 @@ h1 {
     margin-bottom: 20px;
 }
 
-/* BUG: The display input is not properly styled, text matches background color or doesn't fit */
+/* FIX: Changed color to #fff (white) for readability against the dark background */
 #calc-display {
     width: 100%;
     height: 50px;
@@ -38,17 +38,17 @@ h1 {
     border: none;
     outline: none;
     border-radius: 10px;
-    color: #000; /* BUG: Font color is black on dark background, making it hard to read */
+    color: #fff;
     font-size: 2rem;
     text-align: right;
     padding: 10px;
     box-sizing: border-box;
 }
 
-/* BUG: buttons-grid has grid layout but the grid columns configuration is wrong or missing */
+/* FIX: Changed columns to 4 for correct standard calculator grid layout */
 .buttons-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* BUG: It should be repeat(4, 1fr) for a standard calculator grid layout, causing buttons to stack weirdly */
+    grid-template-columns: repeat(4, 1fr);
     gap: 10px;
 }
 
@@ -70,7 +70,7 @@ button:hover {
 
 .equals-btn {
     background: #ff5e62;
-    grid-row: span 2; /* BUG: Span row causes weird grid stretch because grid has 3 columns and irregular shapes */
+    grid-row: span 2;
 }
 
 .zero-btn {
