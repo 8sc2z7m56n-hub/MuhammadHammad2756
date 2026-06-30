@@ -7,8 +7,11 @@ def load_data():
     if not os.path.exists("students.json"):
         return []
     with open("students.json", "r") as file:
-        # BUG 1: File might be empty, resulting in json.JSONDecodeError if we don't catch it
-        return json.load(file)
+        # FIX: Added try-except block to handle empty file JSONDecodeError
+        try:
+            return json.load(file)
+        except json.JSONDecodeError:
+            return []
 
 def save_data(students):
     with open("students.json", "w") as file:
@@ -16,9 +19,9 @@ def save_data(students):
 
 def add_student():
     name = input("Enter student name: ")
-    # BUG 2: Read grades as comma-separated string, but we fail to convert elements to float/int
     grades_input = input("Enter grades separated by commas (e.g. 80,90,85): ")
-    grades = grades_input.split(",") # BUG: grades are stored as strings (e.g., ["80", "90"])
+    # FIX: Correctly convert grades input into integer/float scores
+    grades = [float(g.strip()) for g in grades_input.split(",") if g.strip()]
     
     student = {
         "name": name,
@@ -37,9 +40,8 @@ def calculate_average():
         return
         
     for student in students:
-        # BUG 3: TypeError - sum() cannot sum a list of strings, and grades are strings!
-        # BUG 4: KeyError - accessing 'grade' instead of 'grades'
-        total_score = sum(student["grade"]) 
+        # FIX: Corrected KeyError and TypeError: Access grades and sum float values correctly
+        total_score = sum(student["grades"]) 
         avg = total_score / len(student["grades"])
         print(f"Student: {student['name']} - Average Grade: {avg:.2f}")
 
@@ -58,8 +60,8 @@ def main():
         elif choice == "3":
             print("Goodbye!")
             break
-        else
-            # BUG 5: Syntax Error - missing colon ':' on the else statement
+        else:
+            # FIX: Added missing colon to else statement
             print("Invalid choice!")
 
 if __name__ == "__main__":
