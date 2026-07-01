@@ -38,7 +38,7 @@ h1 {
     border: none;
     outline: none;
     border-radius: 10px;
-    color: #000; /* BUG: Font color is black on dark background, making it hard to read */
+    color: #fff;
     font-size: 2rem;
     text-align: right;
     padding: 10px;
@@ -48,7 +48,7 @@ h1 {
 /* BUG: buttons-grid has grid layout but the grid columns configuration is wrong or missing */
 .buttons-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* BUG: It should be repeat(4, 1fr) for a standard calculator grid layout, causing buttons to stack weirdly */
+    grid-template-columns: repeat(4, 1fr);
     gap: 10px;
 }
 
@@ -70,7 +70,7 @@ button:hover {
 
 .equals-btn {
     background: #ff5e62;
-    grid-row: span 2; /* BUG: Span row causes weird grid stretch because grid has 3 columns and irregular shapes */
+    grid-row: span 2;
 }
 
 .zero-btn {
